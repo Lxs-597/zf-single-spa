@@ -7,8 +7,19 @@
   <title>Document</title>
 </head>
 <body>
+  <a onclick="toA()">应用1</a>
+  <a onclick="toB()">应用2</a>
+
   <script src="./lib/umd/single-spa.js"></script>
   <script>
+    function toA() {
+      history.pushState({}, '', '/a')
+    }
+    function toB() {
+      history.pushState({}, '', '/b')
+    }
+
+
     SingleSpa.registerApplication(
       'app1',
       async () => {
@@ -25,7 +36,7 @@
           },
         }
       },
-      location => location.hash.startsWith('#/app1'), // 根据路径判断是否要加载
+      location => location.pathname.startsWith('/a'), // 根据路径判断是否要加载
       {
         store: {
           name: 'single-app1'
@@ -49,7 +60,7 @@
           },
         }
       },
-      location => location.hash.startsWith('#/app2'), // 根据路径判断是否要加载
+      location => location.pathname.startsWith('/b'), // 根据路径判断是否要加载
       {
         store: {
           name: 'single-app2'

@@ -13,8 +13,6 @@ export const registerApplication = (appName, loadApp, activeWhen, customProps) =
     customProps
   })
 
-  console.log(apps)
-
   reroute()
 }
 
